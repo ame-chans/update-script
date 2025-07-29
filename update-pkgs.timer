@@ -1,0 +1,10 @@
+[Unit]
+Description=Run update-pkgs.service every hour
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+

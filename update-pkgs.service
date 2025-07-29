@@ -1,0 +1,9 @@
+[Unit]
+Description=Hourly Package Update Script
+
+[Service]
+Type=oneshot
+ExecStart=/home/amefan/updates.sh
+
+[Install]
+WantedBy=multi-user.target
