@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # A very, very barebones script that takes care of updating my packages on my install.
 # A .timer and .service file are also included, to let you enable and use it hourly, in order to not forget to update packagesi
 # So far, we have notifications based on whether or not packages were updated.
