@@ -16,6 +16,7 @@ yay -Syyu --needed --noconfirm
 
 if [ -z "${pkgs// }" ] ; then
 	notify-send -t 5000 "Update script" "No packages were updated at $TIME."
+        notify-send -t 10000 "Update script" "Packages updated today: $pkgstotal"
 	exit
 else
 	echo "The packages updated at" $TIME "are" $pkgs ". Please check https://archlinux.org/news/ for any manual interventions that may be required !" > $HOME/pkgs-updated
