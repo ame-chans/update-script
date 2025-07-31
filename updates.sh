@@ -7,9 +7,6 @@ DATE=$(date -I)
 HOUR=$(date +%H)
 TIME=$(date +%R+%S)
 
-# Wiping the contents of the files, regarding yesterday's contents
-echo "" > $HOME/pkgs-updated
-
 # Upgrading packages
 sudo pacman -Syyu --noconfirm
 yay -Syyu --needed --noconfirm
@@ -31,4 +28,4 @@ else
 fi
 
 # Writing the packages of the day, all being written to a file so you can check on a daily basis.
-echo $DATE "-" $pkgstotal >> $HOME/pkgs-updated-total
+echo $DATE $pkgstotal >> $HOME/pkgs-updated-total
