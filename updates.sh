@@ -10,9 +10,11 @@ yay -Syyu --needed --noconfirm
 DATE=$(date -I)
 HOUR=$(date +%H)
 TIME=$(date +%R+%S)
+# Poorly named, but I couldn't find a better suited variable name to get the date + hour to check in pacman logs...
+LOG=$(cat /var/log/pacman.log | grep $DATE | grep $HOUR | cut -d ":" -f 1)
 
 # Obtaining the list of packages for the day, and even for the day and at the hour it's run
-pkgsatruntime=$(cat /var/log/pacman.log | grep $DATE | grep $HOUR | grep "upgraded" | cut -d " " -f 4)
+pkgsatruntime=$(cat /var/log/pacman.log | grep $DATE | grep $LOG | grep "upgraded" | cut -d " " -f 4)
 pkgstotal=$(cat /var/log/pacman.log | grep $DATE | grep "upgraded" | cut -d " " -f 4)
 
 # Notification system, where it notifies based off the contents of the pkgs variable:
