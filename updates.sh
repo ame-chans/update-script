@@ -1,15 +1,15 @@
 #!/bin/bash
 # A very, very barebones script that takes care of updating my packages on my install
 # A .timer and .service file are also included, to let you enable and use it hourly, in order to not forget to update packages
-# Very basic notifications system to inform, and there's a file that lists packages updated/upgraded
-
-DATE=$(date -I)
-HOUR=$(date +%H)
-TIME=$(date +%R+%S)
+# Very basic notifications system to inform, and there's a file that lists packages updated/upgrade
 
 # Upgrading packages
 sudo pacman -Syyu --noconfirm
 yay -Syyu --needed --noconfirm
+
+DATE=$(date -I)
+HOUR=$(date +%H)
+TIME=$(date +%R+%S)
 
 # Obtaining the list of packages for the day, and even for the day and at the hour it's run
 pkgsatruntime=$(cat /var/log/pacman.log | grep $DATE | grep $HOUR | grep "upgraded" | cut -d " " -f 4)
