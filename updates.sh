@@ -1,11 +1,14 @@
 #!/bin/bash
 # A very, very barebones script that takes care of updating my packages on my install
 # A .timer and .service file are also included, to let you enable and use it hourly, in order to not forget to update packages
-# Very basic notifications system to inform, and there's a file that lists packages updated/upgrade
+# Very basic notifications system to inform, and there's a file that lists packages updated/upgraded
+# Checked notifications, seems like there's issues... I'll try to fix those...
 
 # Upgrading packages
 sudo pacman -Syyu --noconfirm
 yay -Syyu --needed --noconfirm
+flatpak update org.vinegarhq.Sober --noninteractive
+flatpak update org.prismlauncher.PrismLauncher --noninteractive
 
 DATE=$(date -I)
 HOUR=$(date +%H)
@@ -14,7 +17,7 @@ TIME=$(date +%R+%S)
 LOG=$(cat /var/log/pacman.log | grep $DATE | grep $HOUR | cut -d ":" -f 1)
 
 # Obtaining the list of packages for the day, and even for the day and at the hour it's run
-pkgsatruntime=$(cat /var/log/pacman.log | grep $DATE | grep $LOG | grep "upgraded" | cut -d " " -f 4)
+pkgsatruntime=$(cat /var/log/pacman.log | grep $LOG | grep "upgraded" | cut -d " " -f 4)
 pkgstotal=$(cat /var/log/pacman.log | grep $DATE | grep "upgraded" | cut -d " " -f 4)
 
 # Notification system, where it notifies based off the contents of the pkgs variable:
