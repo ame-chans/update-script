@@ -3,7 +3,7 @@ Description=Hourly Package Update Script
 
 [Service]
 Type=oneshot
-ExecStart=/home/amefan/updates.sh
+ExecStart=$HOME/updates.sh
 
 [Install]
 WantedBy=multi-user.target
